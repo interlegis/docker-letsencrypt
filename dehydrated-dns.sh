@@ -13,7 +13,7 @@ function deploy_challenge {
 
     echo "deploy_challenge called: ${DOMAIN}, ${TOKEN_FILENAME}, ${TOKEN_VALUE}"
 
-    if [ "$PROVIDER" == "POWERDNS" ]; then
+    if [ "${PROVIDER,,}" == "powerdns" ]; then
         lexicon $PROVIDER create ${DOMAIN} TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}" --pdns-server ${LEXICON_POWERDNS_SERVER}
     else
         lexicon $PROVIDER create ${DOMAIN} TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
@@ -44,7 +44,7 @@ function clean_challenge {
 
     echo "clean_challenge called: ${DOMAIN}, ${TOKEN_FILENAME}, ${TOKEN_VALUE}"
 
-    if [ "$PROVIDER" == "POWERDNS" ]; then
+    if [ "${PROVIDER,,}" == "powerdns" ]; then
         lexicon $PROVIDER delete ${DOMAIN} TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}" --pdns-server ${LEXICON_POWERDNS_SERVER}
     else
         lexicon $PROVIDER delete ${DOMAIN} TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
