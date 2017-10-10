@@ -27,5 +27,15 @@ if [ "${LE_DOMAIN}" ]; then
     cat /etc/dehydrated/domains.txt
 fi
 
+if [ "${LE_KEY_ALGO}" == 'rsa' ]; then
+    echo "***** KEY ALGORITHM ${LE_KEY_ALGO} *****"
+    sed -i 's@KEY_ALGO=.*@KEY_ALGO=rsa@g' /etc/dehydrated/config
+else 
+    if [ "${LE_KEY_ALGO}" == 'prime256v1' ]; then
+        echo "***** KEY ALGORITHM ${LE_KEY_ALGO} *****"
+        sed -i 's@KEY_ALGO=.*@KEY_ALGO=prime256v1@g' /etc/dehydrated/config
+    fi
+fi
+
 echo "${@}"
 exec "${@}"
