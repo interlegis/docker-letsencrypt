@@ -85,4 +85,4 @@ KEY_ALGO=secp384r1
 #LOCKFILE="${BASEDIR}/lock"
 
 # Option to add CSR-flag indicating OCSP stapling to be mandatory (default: no)
-OCSP_MUST_STAPLE="yes"
+#OCSP_MUST_STAPLE="no"
