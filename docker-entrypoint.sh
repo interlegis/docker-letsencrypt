@@ -37,5 +37,13 @@ else
     fi
 fi
 
+if [ "${LE_KEYSIZE}" == '2048' ]; then
+    echo "***** KEY SIZE ${LE_KEYSIZE} bits *****"
+    sed -i 's@KEYSIZE=.*@KEYSIZE="2048"@g' /etc/dehydrated/config
+else
+    echo "***** KEY SIZE 4096 bits *****"
+fi
+
+
 echo "${@}"
 exec "${@}"

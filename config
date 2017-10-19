@@ -46,7 +46,7 @@ CERTDIR="/etc/ssl"
 WELLKNOWN="/var/www/.well-known/acme-challenge"
 
 # Default keysize for private keys (default: 4096)
-#KEYSIZE="4096"
+KEYSIZE="4096"
 
 # Path to openssl config file (default: <unset> - tries to figure out system default)
 #OPENSSL_CNF=
