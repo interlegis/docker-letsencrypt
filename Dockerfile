@@ -1,24 +1,24 @@
-FROM library/alpine:3.5
+FROM library/alpine:3.14
 
 # Credit: @frol for python3 - https://github.com/frol/docker-alpine-python3/blob/master/Dockerfile
 
 # deps - python3 openssl curl sed grep mktemp
 # boto3 - AWS SDK for python
-RUN apk add --no-cache --virtual .build-deps git \
-    && apk add --no-cache --virtual .dehydrated-rundeps python3 bash openssl curl \
+RUN apk add --no-cache --virtual .build-deps git build-base libffi-dev openssl-dev cargo \
+    && apk add --no-cache --virtual .dehydrated-rundeps python3-dev py-pip bash openssl curl \
     && pip3 install --upgrade pip boto3 dns-lexicon dns-lexicon[route53] dns-lexicon[transip] \
     && rm -r /root/.cache \
 
     && cd /tmp \
     && git clone https://github.com/lukas2511/dehydrated.git \
     && cd dehydrated \
-    && git checkout tags/v0.4.0 \
+    && git checkout tags/v0.6.5 \
     && cd .. \
     && chmod a+x dehydrated/dehydrated \
     && mv dehydrated/dehydrated /usr/bin/ \
     && git clone https://github.com/AnalogJ/lexicon.git \
     && cd lexicon \
-    && git checkout tags/v2.1.8 \
+    && git checkout tags/v3.3.17 \
     && cd .. \
     && rm -rf /tmp/* \
     && apk del .build-deps
