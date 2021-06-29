@@ -1,4 +1,4 @@
-FROM library/alpine:3.14
+FROM library/alpine:3.13
 
 # Credit: @frol for python3 - https://github.com/frol/docker-alpine-python3/blob/master/Dockerfile
 
