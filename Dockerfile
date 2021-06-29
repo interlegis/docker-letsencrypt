@@ -20,12 +20,11 @@ RUN apk add --no-cache --virtual .build-deps git build-base libffi-dev openssl-d
     && cd lexicon \
     && git checkout tags/v3.3.17 \
     && cd .. \
-    && chmod a+x lexicon/examples/dehydrated.default.sh \
-    && mv lexicon/examples/dehydrated.default.sh /usr/bin/dehydrated-dns \
     && rm -rf /tmp/* \
     && apk del .build-deps
 
 COPY config /etc/dehydrated/config
+COPY dehydrated-dns.sh /usr/bin/dehydrated-dns
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
